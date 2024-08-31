@@ -2,7 +2,7 @@ import os
 from zipfile import ZipFile
 
 #PART 1 Loop through the directory and if there is a file with zip extension unarchive it in the same directory
-path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test"
+path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test_2"
 #directoryObject = os.scandir()
 directoryObject = os.scandir(path)
 file_path = ""

@@ -93,7 +93,7 @@ def checkContent(content_file, feedback_file):
 if __name__ == "__main__":
   #print("Please enter the path to directory:")
   #path = input()
-  path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test"
+  path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test_1"
   unArchiveProjects(path)
   pathObject = os.scandir(path)
   for directory in pathObject:
