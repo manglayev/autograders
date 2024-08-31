@@ -17,6 +17,8 @@ def unArchiveProjects(path):
             os.rename(zip_file, new_name)
             with ZipFile(new_name, 'r') as zObject:
               zObject.extractall(path = os.path.dirname(zip_file))
+          else:
+            print(zip_file.path)              
 
 def createContentAndFeedbackFiles(pathToFiles):  
   #create content file to contain all html and css of the site
