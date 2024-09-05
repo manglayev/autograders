@@ -57,11 +57,12 @@ def ConcatenateHTMLandCSS(input_file, content_file):
 
 def checkContent(content_file, feedback_file):  
   items_needed = ('<h1', '<h2', '<h3', '<h4', '<h5', '<h6', '<a',
-                  '<img', '<!--', '<b', '<strong', '<i', '&lt',
-                  '&gt', '&amp', '&nbsp', '&copy', '&quot', '<ul',
-                  '<ol', '<li', '<br', '<hr', '<div', '<p', '<span',
-                  'font-family', 'font-size', 'color', 'margin', 'padding',
-                  'background-color', 'border', 'width', 'height', 'class=')
+                    '<img', '<!--', '<b', '<strong', '<i', '&lt',
+                    '&gt', '&amp', '&nbsp', '&copy', '&quot', '<ul',
+                    '<ol', '<li', '<br', '<hr', '<div', '<p', '<span',
+                    'font-family', 'font-size', 'color', 'margin',
+                    'padding', 'background-color', 'border', 'width',
+                    'height', 'class=', '.css', '[')
   items_lack = ""   
   line_counter = 0
   for y in items_needed:    
