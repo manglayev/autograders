@@ -93,8 +93,8 @@ def checkContent(content_file, feedback_file):
 if __name__ == "__main__":
   #print("Please enter the path to directory:")
   #path = input()
-  path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test_1"
-  unArchiveProjects(path)
+  path = "/Users/talgatmanglayev/Desktop/CSCI-111/hw-1_test"
+  unArchiveProjects(path)  
   pathObject = os.scandir(path)
   for directory in pathObject:
     if directory.is_dir():      
@@ -113,4 +113,3 @@ if __name__ == "__main__":
               for siteFile in siteFiles:
                 ConcatenateHTMLandCSS(siteFile, content_file)
       checkContent(content_file, feedback_file)
-  print("END")
