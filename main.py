@@ -73,7 +73,7 @@ def checkContent(content_file, feedback_file):
         found = found + 1
     f.close
     if found < 0:      
-      items_lack = items_lack + y + ", "
+      items_lack = '"' + items_lack + y + '", '
     number_of_items_lack = len(items_lack.split(", ")) - 1
   if number_of_items_lack > 30:
     print("MORE THAN 30 ITEMS ARE MISSING")
@@ -87,7 +87,9 @@ def checkContent(content_file, feedback_file):
       else:
         feedback.write("All HTML elements: are present\n")
       feedback.write(items_lack)
-      feedback.write("\nThere are "+str(number_of_items_lack)+" html and/or css items are missing\n")        
+      feedback.write("\nThere are "+str(number_of_items_lack)+" html and/or css items are missing\n")
+      feedback.write("OVERALL PERFORMANCE:\n")
+      feedback.write("TOTAL:\n")
   except FileExistsError:
     print(f"The file '{feedback_file}' already exists.")
   
