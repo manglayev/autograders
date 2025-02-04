@@ -138,13 +138,13 @@ for entry in directoryObject:
 
     #print(file_path.upper())
     items_needed = ('<h1', '<h2', '<h3', '<h4', '<h5', '<h6', '<a','_blank',
-                  '_self','<img', 'alt=','<!--', '<b', '<strong', '<i', '&lt',
+                  '<img', 'alt=','<!--', '<b', '<strong', '<i', '&lt',
                   '&gt', '&amp', '&nbsp', '&copy', '&quot', '<ul',
                   '<ol', '<li', '<br', '<hr', '<div', '<p', '<span', '<video', 
                   '<title','<iframe', '<table',
                   'font-family', 'font-size', 'color', 'margin',
                   'padding', 'background-color', 'border', 'width',
-                  'height', 'class=', 'id=', 'style=', '<style', '.css', '[')
+                  'height', 'class=', '#', 'style=', '<style>', '.css', '[', 'icon')
     items_lack = ""
     #contentFile = os.path.dirname(zip_file)+"/all_html_and_css.txt"    
     line_counter = 0
@@ -187,7 +187,7 @@ for entry in directoryObject:
         #feedback_text = feedback_text + items_lack + "\n"
         feedback_text = feedback_text + ". Number of missing HTML and/or CSS items: "+str(number_of_items_lack)
         #print(feedback_text)
-        grade_1 = 5 - number_of_items_lack*0.1
+        grade_1 = 4.8 - number_of_items_lack*0.1
     except FileExistsError:
       print(f"The file '{feedback_file}' already exists.")
     file_result = "/home/talgat/Desktop/111/hw-1-results/111-results.csv"
