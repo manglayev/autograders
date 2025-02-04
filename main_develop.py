@@ -166,15 +166,16 @@ for entry in directoryObject:
     #  print("MORE THAN 30 ITEMS ARE MISSING")
     feedback_text = ""
     #print(items_lack)
+    """
     try:
       if os.path.exists(feedback_file):
         os.remove(feedback_file)
       with open(feedback_file, 'x') as feedback:          
         feedback.write("FEEDBACK START:\n")
         if len(items_lack) > 2:
-          feedback.write("Missing HTML and/or CSS elements: ")
+          feedback.write("Grade 1./nMissing HTML and/or CSS elements: ")
           feedback.write(items_lack)
-          feedback_text = feedback_text + "Missing HTML and/or CSS elements: "
+          feedback_text = feedback_text + "Grade 1./nMissing HTML and/or CSS elements: "
           feedback_text = feedback_text + items_lack
           #print(items_lack)
         else:
@@ -187,9 +188,21 @@ for entry in directoryObject:
         #feedback_text = feedback_text + items_lack + "\n"
         feedback_text = feedback_text + ". Number of missing HTML and/or CSS items: "+str(number_of_items_lack)
         #print(feedback_text)
+        feedback_text = feedback_text + "/n; Grade 2: "
         grade_1 = 4.8 - number_of_items_lack*0.1
     except FileExistsError:
       print(f"The file '{feedback_file}' already exists.")
+    """
+    if len(items_lack) > 2:
+      feedback_text = feedback_text + "Grade 1.\nMissing HTML and/or CSS elements: "
+      feedback_text = feedback_text + items_lack
+      feedback_text = feedback_text + ". Number of missing HTML and/or CSS items: "+str(number_of_items_lack)
+      #print(items_lack)
+    else:
+      feedback_text = feedback_text + "All HTML and CSS elements: are present\n"
+    feedback_text = feedback_text + "\nGrade 2: "
+    grade_1 = 4.8 - number_of_items_lack * 0.1
+
     file_result = "/home/talgat/Desktop/111/hw-1-results/111-results.csv"
     with open(file_result, mode='a') as csv_file:
       fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
