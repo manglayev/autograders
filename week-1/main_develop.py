@@ -11,7 +11,7 @@ from zipfile import ZipFile
 #MacOS path
 #path = "/Users/talgatmanglayev/Desktop/CSCI-111
 #Ubuntu path
-path = "/home/talgat/Desktop/111/111-HW-1"
+path = "/home/talgat/Desktop/112/HW-1"
 directoryObject = os.scandir(path)
 file_path = ""
 feedback_file = ""
@@ -19,7 +19,7 @@ feedback_file = ""
 student_info = {}
 grade_1 = 5
 import csv
-file_result = "/home/talgat/Desktop/111/hw-1-results/111-results.csv"
+file_result = "/home/talgat/Desktop/112/111-results.csv"
 with open(file_result, mode='w') as csv_file:
     fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
@@ -44,7 +44,7 @@ for entry in directoryObject:
     grade 1, grade 2 as 0 and Feedback into a new CSV file
     """
     import csv
-    file_participants = "/home/talgat/Desktop/111/111-participants.csv"
+    file_participants = "/home/talgat/Desktop/112/111-participants.csv"
     with open(file_participants, newline='') as csvfile:
       path_participants = csv.reader(csvfile, delimiter=' ', quotechar='|')
       for row in path_participants:
@@ -62,7 +62,7 @@ for entry in directoryObject:
         file_name = split_tup[0]
         file_extension = split_tup[1]
         if file_extension == ".zip":
-          #print(file_name+file_extension)
+          print(file_name+file_extension)
           new_name = file_name+"_archive.zip"
           os.rename(zip_file, new_name)
           with ZipFile(new_name, 'r') as zObject:
@@ -203,7 +203,7 @@ for entry in directoryObject:
     feedback_text = feedback_text + "\nGrade 2: "
     grade_1 = 4.8 - number_of_items_lack * 0.1
 
-    file_result = "/home/talgat/Desktop/111/hw-1-results/111-results.csv"
+    file_result = "/home/talgat/Desktop/112/111-results.csv"
     with open(file_result, mode='a') as csv_file:
       fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
       writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
