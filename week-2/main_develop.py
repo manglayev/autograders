@@ -11,7 +11,7 @@ from zipfile import ZipFile
 #MacOS path
 #path = "/Users/talgatmanglayev/Desktop/CSCI-111
 #Ubuntu path
-path = "/home/talgat/Desktop/112/HW-1"
+path = "C:/Users/user/Downloads/homework2"
 directoryObject = os.scandir(path)
 file_path = ""
 feedback_file = ""
@@ -19,9 +19,9 @@ feedback_file = ""
 student_info = {}
 grade_1 = 5
 import csv
-file_result = "/home/talgat/Desktop/112/111-results.csv"
+file_result = "C:/Users/user/Downloads/results_hw2.csv"
 with open(file_result, mode='w') as csv_file:
-    fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
+    fieldnames = ["first_name", "last_name", "id", "grade-2", "grade-1", "grade", "feedback"] # grade-2 autograder+ TODO things, grade-1 is Grade-1 in homework-2 pdf file (range 0-5)
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
     writer.writeheader()
     #writer.writerow({"first_name": 'John', "last_name": 'Smith', "id": '123456', "grade-1":'5', "grade-2":'4', "grade":'4.5', "feedback":'Nice'})
@@ -44,7 +44,7 @@ for entry in directoryObject:
     grade 1, grade 2 as 0 and Feedback into a new CSV file
     """
     import csv
-    file_participants = "/home/talgat/Desktop/112/111-participants.csv"
+    file_participants = "C:/Users/user/Downloads/courseid_15122_participants(1).csv"
     with open(file_participants, newline='') as csvfile:
       path_participants = csv.reader(csvfile, delimiter=' ', quotechar='|')
       for row in path_participants:
@@ -137,17 +137,25 @@ for entry in directoryObject:
                   all_html_and_css.close()
 
     #print(file_path.upper())
-    items_needed = ('<h1', '<h2', '<h3', '<h4', '<h5', '<h6', '<a','_blank',
-                  '<img', 'alt=','<!--', '<b', '<strong', '<i', '&lt',
-                  '&gt', '&amp', '&nbsp', '&copy', '&quot', '<ul',
-                  '<ol', '<li', '<br', '<hr', '<div', '<p', '<span', '<video', 
-                  '<title','<iframe', '<table',
-                  'font-family', 'font-size', 'color', 'margin',
-                  'padding', 'background-color', 'border', 'width',
-                  'height', 'class=', '#', 'style=', '<style>', '.css', '[', 'icon')
+    items_needed = (':hover', ':active', ':visited', ':first-child', ':last-child', '::before', '::after','border',
+                  'overflow', 'box-sizing','block', 'inline', 'inline-block',
+                  'margin', 'padding', 'auto', 'scroll', 'hidden', 'with',
+                  'without', 'float', 'clear:', 'static', 'relative', 'absolute', 'fixed', 'sticky')
+    flex_items_needed = ('flex-container', 'flex-direction')
+    # 'flex-container', 'flex-direction' each 0.35 TODO: DONE
+    # manually check for nav bar (or menu) (0.6%) TODO
+    # check manually Combine selectors to style elements more precisely (0.4%) TODO
+    # check manually for hild selectors to style immediate children of a parent element (0.4%) ( div > li ) TODO
+    # Manually: Adjacent sibling selectors to style elements that come immediately after another element (0.4%) (div + li) TODO
+    # Alua Akhmolda TODO: DONE
+    # Ayazhan Zhora
+    # Daniya Mukusheva
+    # Mukhsin Assetov           - they've used non-english characters, so I'll check 'em manually
     items_lack = ""
+    flex_items_lack = ""
     #contentFile = os.path.dirname(zip_file)+"/all_html_and_css.txt"    
     line_counter = 0
+
     for y in items_needed:
       #print(y+ " is being searched\n")
       f = open(file_path, "r")
@@ -164,8 +172,21 @@ for entry in directoryObject:
       number_of_items_lack = len(items_lack.split(", ")) - 1
     #if number_of_items_lack > 30:
     #  print("MORE THAN 30 ITEMS ARE MISSING")
+
+    for y in flex_items_needed:
+      f = open(file_path, "r")
+      found = -1
+      for x in f:
+        if x.find(y) >= 0:
+          found = found + 1
+      f.close()
+      if found < 0:
+        flex_items_lack = flex_items_lack + y + ", "
+
+    number_of_flex_items_lack = len(flex_items_lack.split(", ")) - 1
+
     feedback_text = ""
-    #print(items_lack)
+    # print(items_lack)
     """
     try:
       if os.path.exists(feedback_file):
@@ -189,21 +210,25 @@ for entry in directoryObject:
         feedback_text = feedback_text + ". Number of missing HTML and/or CSS items: "+str(number_of_items_lack)
         #print(feedback_text)
         feedback_text = feedback_text + "/n; Grade 2: "
-        grade_1 = 4.8 - number_of_items_lack*0.1
+        grade_1 = 3.2 - number_of_items_lack*0.1
     except FileExistsError:
       print(f"The file '{feedback_file}' already exists.")
     """
     if len(items_lack) > 2:
-      feedback_text = feedback_text + "Grade 1.\nMissing HTML and/or CSS elements: "
+      feedback_text = feedback_text + "Grade 2.\nMissing HTML and/or CSS elements: "
       feedback_text = feedback_text + items_lack
       feedback_text = feedback_text + ". Number of missing HTML and/or CSS items: "+str(number_of_items_lack)
       #print(items_lack)
-    else:
-      feedback_text = feedback_text + "All HTML and CSS elements: are present\n"
-    feedback_text = feedback_text + "\nGrade 2: "
-    grade_1 = 4.8 - number_of_items_lack * 0.1
+    if len(flex_items_lack) > 2:
+      feedback_text += "\nMissing Flexbox elements: " + flex_items_lack
+      feedback_text += ". Number of missing Flexbox items: " + str(number_of_flex_items_lack)
+    if len(items_lack) <= 2 and len(flex_items_lack) <= 2:
+      feedback_text += "All HTML and CSS elements are present.\n"
 
-    file_result = "/home/talgat/Desktop/112/111-results.csv"
+    feedback_text = feedback_text + "\nGrade 1: "
+    grade_1 = 3.2 - number_of_items_lack * 0.1 - (number_of_flex_items_lack * 0.35)
+
+    file_result = "C:/Users/user/Downloads/results_hw2.csv"
     with open(file_result, mode='a') as csv_file:
       fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
       writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
