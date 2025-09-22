@@ -11,7 +11,7 @@ from zipfile import ZipFile
 #MacOS path
 #path = "/Users/talgatmanglayev/Desktop/CSCI-111
 #Ubuntu path
-path = "C:/Users/user/Downloads/homework2"
+path = "/home/talgat/Desktop/CSCI111"
 directoryObject = os.scandir(path)
 file_path = ""
 feedback_file = ""
@@ -19,7 +19,7 @@ feedback_file = ""
 student_info = {}
 grade_1 = 5
 import csv
-file_result = "C:/Users/user/Downloads/results_hw2.csv"
+file_result = "/home/talgat/Desktop/CSCI111/results_hw2.csv"
 with open(file_result, mode='w') as csv_file:
     fieldnames = ["first_name", "last_name", "id", "grade-2", "grade-1", "grade", "feedback"] # grade-2 autograder+ TODO things, grade-1 is Grade-1 in homework-2 pdf file (range 0-5)
     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
@@ -44,7 +44,7 @@ for entry in directoryObject:
     grade 1, grade 2 as 0 and Feedback into a new CSV file
     """
     import csv
-    file_participants = "C:/Users/user/Downloads/courseid_15122_participants(1).csv"
+    file_participants = "/home/talgat/Desktop/CSCI111/participants.csv"
     with open(file_participants, newline='') as csvfile:
       path_participants = csv.reader(csvfile, delimiter=' ', quotechar='|')
       for row in path_participants:
@@ -228,7 +228,7 @@ for entry in directoryObject:
     feedback_text = feedback_text + "\nGrade 1: "
     grade_1 = 3.2 - number_of_items_lack * 0.1 - (number_of_flex_items_lack * 0.35)
 
-    file_result = "C:/Users/user/Downloads/results_hw2.csv"
+    file_result = "/home/talgat/Desktop/CSCI111/results_hw2.csv"
     with open(file_result, mode='a') as csv_file:
       fieldnames = ["first_name", "last_name", "id", "grade-1", "grade-2", "grade", "feedback"]
       writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
